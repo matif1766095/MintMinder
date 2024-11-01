@@ -1,6 +1,3 @@
-Here’s a more visually appealing and structured version of your README.md file. I've included emojis, improved formatting, and added a contact section for a more engaging presentation:
-
-```markdown
 # 🎮 Game Coin Management System
 
 ## 📚 Table of Contents
