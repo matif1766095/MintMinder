@@ -147,8 +147,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 Created by **Muhammad Atif** – [Email Me](mailto:muhammad.atif17660@gmail.com)
 
 ---
-
-Feel free to customize any sections further to better match your style and project specifics!
-```
-
-This format incorporates a variety of elements such as emojis for visual appeal, section headers for better readability, and contact information to enhance engagement. You can further adjust it based on your preferences!
