@@ -8,7 +8,7 @@ from io import StringIO
 import pandas as pd
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'  # Change this to a random secret key
+app.config['SECRET_KEY'] = 'mo_atif_secret_key'  
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///game_coins.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
