@@ -36,6 +36,13 @@ class GameCoin(db.Model):
     description = db.Column(db.Text, nullable=True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
 
+# TransactionHistory model
+class TransactionHistory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    action = db.Column(db.String(50), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
 
 if __name__ == '__main__':
     with app.app_context():
