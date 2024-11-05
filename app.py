@@ -43,6 +43,10 @@ class TransactionHistory(db.Model):
     action = db.Column(db.String(50), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 @app.route('/')
 def home():
     return render_template('index.html')
