@@ -43,6 +43,10 @@ class TransactionHistory(db.Model):
     action = db.Column(db.String(50), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 
 if __name__ == '__main__':
     with app.app_context():
