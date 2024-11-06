@@ -51,6 +51,20 @@ def load_user(user_id):
 def home():
     return render_template('index.html')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        user = User.query.filter_by(email=email).first()
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            flash('Login successful!', 'success')
+            return redirect(url_for('profile'))
+        else:
+            flash('Login failed. Check your credentials.', 'danger')
+    return render_template('login.html')
+
 
 if __name__ == '__main__':
     with app.app_context():
