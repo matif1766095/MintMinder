@@ -78,6 +78,11 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html')
 
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html', user=current_user)
+
 
 if __name__ == '__main__':
     with app.app_context():
