@@ -83,6 +83,13 @@ def register():
 def profile():
     return render_template('profile.html', user=current_user)
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('Logged out successfully!', 'info')
+    return redirect(url_for('home'))
+
 
 if __name__ == '__main__':
     with app.app_context():
