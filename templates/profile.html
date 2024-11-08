@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Game Coin Manager</title>
+  <link rel="stylesheet" href="/static/profile/style.css">
+</head>
+<body>
+    <header>
+        Game Coin Manager
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Welcome, {{ user.username }}</h2>
+            <a href="{{ url_for('manage_coins') }}">Manage Game Coins</a>
+            <a href="{{ url_for('transaction_history') }}">Transaction History</a>
+            <a href="{{ url_for('report') }}">View Report</a>
+            <a href="{{ url_for('logout') }}" onclick="confirmLogout(event)">Logout</a>
+        </div>
+        <div class="main-content">
+            <div>
+                <h1>Your Profile</h1>
+                <p>Welcome, {{ user.username }}! Here you can manage your game coins and view your transaction history.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Game Coin Management by Muhammad Atif. All rights reserved.
+    </footer>
+    <script src="/static/logout.js"></script>
+</body>
+</html>
