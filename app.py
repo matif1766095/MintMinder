@@ -97,7 +97,19 @@ def import_coins():
         flash('Coins imported successfully!', 'success')
     return redirect(url_for('manage_coins'))
 
-
+@app.route('/export')
+@login_required
+def export_coins():
+    coins = GameCoin.query.filter_by(user_id=current_user.id).all()
+    si = StringIO()
+    cw = csv.writer(si)
+    cw.writerow(['Name', 'Type', 'Value', 'Quantity', 'Description'])
+    for coin in coins:
+        cw.writerow([coin.name, coin.type, coin.value, coin.quantity, coin.description])
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=coins.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 @app.route('/logout')
 @login_required
