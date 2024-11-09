@@ -14,7 +14,7 @@
 - [Contact](#-contact)
 
 ## 🚀 Project Overview
-The **MintMinder** is a web application built using **Flask** and **SQLite** to allow users to manage their virtual game currencies using js Api. Users can register, log in, add, update, delete, and view their game coins while tracking their transaction history. The application also supports importing and exporting coin data in CSV format, making it easy to manage large inventories.
+The **MintMinder** is a coin management system web application built using **Flask** and **SQLite** to allow users to manage their virtual game currencies using js Api. Users can register, log in, add, update, delete, and view their game coins while tracking their transaction history. The application also supports importing and exporting coin data in CSV format, making it easy to manage large inventories.
 
 ## 🌟 Features
 - **User Registration and Authentication**: Create and manage user accounts securely.
