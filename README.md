@@ -1,4 +1,4 @@
-# 🎮 Game Coin Management System
+# 🎮 MintMinder (Game Coin Management System)
 
 ## 📚 Table of Contents
 - [Project Overview](#project-overview)
@@ -14,7 +14,7 @@
 - [Contact](#-contact)
 
 ## 🚀 Project Overview
-The **Game Coin Management System** is a web application built using **Flask** and **SQLite** to allow users to manage their virtual game currencies using js Api. Users can register, log in, add, update, delete, and view their game coins while tracking their transaction history. The application also supports importing and exporting coin data in CSV format, making it easy to manage large inventories.
+The **(MintMinder) A Game Coin Management System** is a web application built using **Flask** and **SQLite** to allow users to manage their virtual game currencies using js Api. Users can register, log in, add, update, delete, and view their game coins while tracking their transaction history. The application also supports importing and exporting coin data in CSV format, making it easy to manage large inventories.
 
 ## 🌟 Features
 - **User Registration and Authentication**: Create and manage user accounts securely.
@@ -37,7 +37,7 @@ The **Game Coin Management System** is a web application built using **Flask** a
 
 ## 🛠️ Installation
 
-To get started with the Game Coin Management System, follow these steps:
+To get started with the MintMinder (Game Coin Management System), follow these steps:
 
 1. **Clone the repository:**
    ```bash
