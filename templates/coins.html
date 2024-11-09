@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Game Coins</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/coins/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="{{ url_for('profile') }}">Back to Profile</a>
+        <h1>Manage Game Coins</h1>
+        <div class="search-bar">
+            <!-- Search Input Field -->
+            <input type="text" id="search" placeholder="Search by name" value="{{ search }}">
+            <button type="button" class="btn" onclick="searchCoins()">Search</button>
+            <select id="type" onchange="searchCoins()">
+                <option value="">All Types</option>
+                <option value="Item" {% if type=='Item' %}selected{% endif %}>Filter by Item</option>
+                <option value="Currency" {% if type=='Currency' %}selected{% endif %}>Filter by Currency</option>
+            </select>
+            <select id="sort" onchange="searchCoins()">
+                <option value="">Sort by Name</option>
+                <option value="value" {% if sort=='value' %}selected{% endif %}>Sort by Value</option>
+                <option value="quantity" {% if sort=='quantity' %}selected{% endif %}>Sort by Quantity</option>
+            </select>
+            <button class="btn" onclick="document.getElementById('importModal').style.display='flex'">Import
+                Coins</button>
+            <a href="{{ url_for('export_coins') }}"><button class="btn">Export Coins</button></a>
+            <button class="btn" onclick="document.getElementById('addCoinModal').style.display='flex'">Add Coin</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Value €</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for coin in coins %}
+                <tr>
+                    <td>{{ coin.name }}</td>
+                    <td>{{ coin.type }}</td>
+                    <td>{{ coin.value }}</td>
+                    <td>{{ coin.quantity }}</td>
+                    <td>{{ coin.description }}</td>
+                    <td>
+                        <button class="btn" onclick="openEditModal({{ coin }})">Edit</button>
+                        <button class="btnDelete"
+                            onclick="confirmDelete({{ coin.id }}, '{{ coin.name }}')">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Edit Coin Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <h2>Edit Coin</h2>
+                <input type="hidden" id="editCoinId">
+                <label for="editName">Name:</label>
+                <input type="text" id="editName" required>
+                <label for="editType">Type:</label>
+                <input type="text" id="editType" required>
+                <label for="editValue">Value:</label>
+                <input type="number" id="editValue" step="0.01" required>
+                <label for="editQuantity">Quantity:</label>
+                <input type="number" id="editQuantity" required>
+                <label for="editDescription">Description:</label>
+                <textarea id="editDescription"></textarea>
+                <button class="btn" onclick="saveCoin()">Save</button>
+                <button class="btn" onclick="closeEditModal()">Close</button>
+            </div>
+        </div>
+
+        <!-- Import Coins Modal -->
+        <div id="importModal" class="modal">
+            <div class="modal-content">
+                <h2>Import Coins</h2>
+                <form action="{{ url_for('import_coins') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" accept=".csv" required>
+                    <button class="btn" type="submit">Import</button>
+                    <button class="btn" type="button"
+                        onclick="document.getElementById('importModal').style.display='none'">Close</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Coin Modal -->
+        <div id="addCoinModal" class="modal">
+            <div class="modal-content">
+                <h2>Add Coin</h2>
+                <form id="addCoinForm" onsubmit="addCoin(event)">
+                    <label for="addName">Name:</label>
+                    <input type="text" id="addName" required>
+                    <label for="addType">Type:</label>
+                    <input type="text" id="addType" required>
+                    <label for="addValue">Value:</label>
+                    <input type="number" id="addValue" step="0.01" required>
+                    <label for="addQuantity">Quantity:</label>
+                    <input type="number" id="addQuantity" required>
+                    <label for="addDescription">Description:</label>
+                    <textarea id="addDescription"></textarea>
+                    <button class="btn" type="submit">Add Coin</button>
+                    <button class="btn" type="button"
+                        onclick="document.getElementById('addCoinModal').style.display='none'">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/coins/script.js"></script>
+</html>
