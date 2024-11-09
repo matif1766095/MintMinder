@@ -83,6 +83,22 @@ def register():
 def profile():
     return render_template('profile.html', user=current_user)
 
+@app.route('/import', methods=['POST'])
+@login_required
+def import_coins():
+    file = request.files['file']
+    if file and file.filename.endswith('.csv'):
+        df = pd.read_csv(file)
+        for index, row in df.iterrows():
+            coin = GameCoin(user_id=current_user.id, name=row['Name'], type=row['Type'], value=row['Value'],
+                            quantity=row['Quantity'], description=row['Description'])
+            db.session.add(coin)
+        db.session.commit()
+        flash('Coins imported successfully!', 'success')
+    return redirect(url_for('manage_coins'))
+
+
+
 @app.route('/logout')
 @login_required
 def logout():
