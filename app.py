@@ -111,6 +111,50 @@ def export_coins():
     output.headers["Content-type"] = "text/csv"
     return output
 
+
+@app.route('/coins', methods=['GET', 'POST'])
+@login_required
+def manage_coins():
+    if request.method == 'POST':
+        data = request.get_json()
+        coin = GameCoin(
+            user_id=current_user.id,
+            name=data['name'],
+            type=data['type'],
+            value=data['value'],
+            quantity=data['quantity'],
+            description=data['description']
+        )
+        db.session.add(coin)
+        db.session.commit()
+        history = TransactionHistory(user_id=current_user.id, action=f"Added coin {coin.name}")
+        db.session.add(history)
+        db.session.commit()
+        return jsonify({'message': 'Coin added successfully!'})
+
+    search_query = request.args.get('search', '')
+    coin_type = request.args.get('type', '')
+    sort_by = request.args.get('sort', 'name')
+
+    coins = GameCoin.query.filter_by(user_id=current_user.id)
+    if search_query:
+        coins = coins.filter(GameCoin.name.ilike(f'%{search_query}%'))
+    if coin_type:
+        coins = coins.filter_by(type=coin_type)
+    
+    coins = coins.order_by(getattr(GameCoin, sort_by)).all()
+
+    coins_data = [{
+        'id': coin.id,
+        'name': coin.name,
+        'type': coin.type,
+        'value': coin.value,
+        'quantity': coin.quantity,
+        'description': coin.description
+    } for coin in coins]
+
+    return render_template('coins.html', coins=coins_data, search=search_query, type=coin_type)
+
 @app.route('/logout')
 @login_required
 def logout():
