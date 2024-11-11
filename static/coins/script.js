@@ -55,3 +55,18 @@ function saveCoin() {
 
     closeEditModal();
 }
+
+function openEditModal(coin) {
+    console.log("Opening edit modal for coin:", coin);
+    document.getElementById('editCoinId').value = coin.id;
+    document.getElementById('editName').value = coin.name;
+    document.getElementById('editType').value = coin.type;
+    document.getElementById('editValue').value = coin.value;
+    document.getElementById('editQuantity').value = coin.quantity;
+    document.getElementById('editDescription').value = coin.description;
+    document.getElementById('editModal').style.display = 'flex';
+}
+
+function closeEditModal() {
+    document.getElementById('editModal').style.display = 'none';
+}
