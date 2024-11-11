@@ -155,6 +155,39 @@ def manage_coins():
 
     return render_template('coins.html', coins=coins_data, search=search_query, type=coin_type)
 
+
+
+@app.route('/coins/<int:coin_id>', methods=['PUT', 'DELETE'])
+@login_required
+def modify_coin(coin_id):
+    coin = GameCoin.query.filter_by(id=coin_id, user_id=current_user.id).first_or_404()
+
+    if request.method == 'PUT':  # Only handle PUT for edits
+        data = request.get_json()
+        if data:
+            coin.name = data.get('name', coin.name)
+            coin.type = data.get('type', coin.type)
+            coin.value = float(data.get('value', coin.value))
+            coin.quantity = int(data.get('quantity', coin.quantity))
+            coin.description = data.get('description', coin.description)
+            db.session.commit()
+
+            history = TransactionHistory(user_id=current_user.id, action=f"Updated coin {coin.name}")
+            db.session.add(history)
+            db.session.commit()
+
+            return jsonify({'message': f'Coin {coin.name} updated successfully!'}), 200
+
+    elif request.method == 'DELETE':
+        db.session.delete(coin)
+        db.session.commit()
+        history = TransactionHistory(user_id=current_user.id, action=f"Deleted coin {coin.name}")
+        db.session.add(history)
+        db.session.commit()
+        return jsonify({'message': f'Coin {coin.name} deleted successfully!'}), 200
+
+    return jsonify({'error': 'Method not allowed'}), 405
+
 @app.route('/logout')
 @login_required
 def logout():
