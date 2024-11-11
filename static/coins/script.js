@@ -70,3 +70,22 @@ function openEditModal(coin) {
 function closeEditModal() {
     document.getElementById('editModal').style.display = 'none';
 }
+
+function confirmDelete(coinId, coinName) {
+    if (confirm(`Are you sure you want to delete ${coinName}?`)) {
+        fetch(`/coins/${coinId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Coin deleted successfully!');
+                    window.location.reload();
+                } else {
+                    alert('Failed to delete coin.');
+                }
+            });
+    }
+}
