@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - MintMinder</title>
+   <link rel="stylesheet" href="/static/transactions/style.css">
+</head>
+<body>
+    <header>
+        MintMinder
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Options</h2>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('manage_coins') }}">Manage Coins</a>
+            <a href="{{ url_for('report') }}">View Report</a>
+            <a href="{{ url_for('transaction_history') }}">Transaction History</a>
+            <a href="{{ url_for('logout') }}" onclick="confirmLogout(event)">Logout</a>
+        </div>
+        <div class="main-content">
+            <h1>Transaction History</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.action }}</td>
+                        <td>{{ transaction.timestamp }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('profile') }}">Back to Profile</a>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 MintMinder by Muhammad Atif. All rights reserved.
+    </footer>
+    <script src="/static/logout.js"></script>
+</body>
+</html>
