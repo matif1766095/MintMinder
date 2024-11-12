@@ -93,24 +93,16 @@ function searchCoins() {
     const search = document.getElementById('search').value.trim();
     const type = document.getElementById('type').value;
     const sort = document.getElementById('sort').value;
-
-    // Construct the query parameters
     const queryParams = new URLSearchParams();
-
-    // Add the search term if it exists
     if (search) {
         queryParams.append('search', search);
     }
-
-    // Always add type and sort if they have values
     if (type) {
         queryParams.append('type', type);
     }
     if (sort) {
         queryParams.append('sort', sort);
     }
-
-    // Redirect to the constructed URL with parameters
     window.location.href = `/coins?${queryParams.toString()}`;
 }
 
