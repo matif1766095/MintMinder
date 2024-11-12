@@ -1,6 +1,5 @@
- /* General Styles */
- body {
-    font-family: 'Roboto', sans-serif; /* Google Font */
+body {
+    font-family: 'Roboto', sans-serif; 
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -16,9 +15,8 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Header and Navigation Styles */
 header {
-    background-color: #4CAF50; /* Green background */
+    background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
 }
@@ -43,10 +41,9 @@ nav .logo {
 }
 
 .nav-links a:hover {
-    color: #ffdd57; /* Light yellow color on hover */
+    color: #ffdd57; 
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
