@@ -195,6 +195,11 @@ def logout():
     flash('Logged out successfully!', 'info')
     return redirect(url_for('home'))
 
+@app.route('/transactions')
+@login_required
+def transaction_history():
+    transactions = TransactionHistory.query.filter_by(user_id=current_user.id).all()
+    return render_template('transactions.html', transactions=transactions)
 
 if __name__ == '__main__':
     with app.app_context():
