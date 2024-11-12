@@ -49,9 +49,7 @@ h1 {
 
 .modal-content button.btn {
     margin-right: 10px;
-    /* Space between buttons */
     margin-top: 10px;
-    /* Space above buttons */
 }
 
 .btnDelete {
