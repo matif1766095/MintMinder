@@ -162,7 +162,7 @@ def manage_coins():
 def modify_coin(coin_id):
     coin = GameCoin.query.filter_by(id=coin_id, user_id=current_user.id).first_or_404()
 
-    if request.method == 'PUT':  # Only handle PUT for edits
+    if request.method == 'PUT':
         data = request.get_json()
         if data:
             coin.name = data.get('name', coin.name)
