@@ -14,7 +14,6 @@
         <a href="{{ url_for('profile') }}">Back to Profile</a>
         <h1>Manage Game Coins</h1>
         <div class="search-bar">
-            <!-- Search Input Field -->
             <input type="text" id="search" placeholder="Search by name" value="{{ search }}">
             <button type="button" class="btn" onclick="searchCoins()">Search</button>
             <select id="type" onchange="searchCoins()">
@@ -30,7 +29,6 @@
             <button class="btn" onclick="document.getElementById('importModal').style.display='flex'">Import
                 Coins</button>
             <a href="{{ url_for('export_coins') }}"><button class="btn">Export Coins</button></a>
-                <!-- made this functionality functional, now user can add new coins based on the data -->
             <button class="btn" onclick="document.getElementById('addCoinModal').style.display='flex'">Add Coin</button>
         </div>
 
@@ -63,7 +61,6 @@
             </tbody>
         </table>
 
-        <!-- Edit Coin Modal -->
         <div id="editModal" class="modal">
             <div class="modal-content">
                 <h2>Edit Coin</h2>
@@ -83,7 +80,6 @@
             </div>
         </div>
 
-        <!-- Import Coins Modal -->
         <div id="importModal" class="modal">
             <div class="modal-content">
                 <h2>Import Coins</h2>
@@ -96,7 +92,6 @@
             </div>
         </div>
 
-        <!-- Add Coin Modal -->
         <div id="addCoinModal" class="modal">
             <div class="modal-content">
                 <h2>Add Coin</h2>
