@@ -188,6 +188,14 @@ def modify_coin(coin_id):
 
     return jsonify({'error': 'Method not allowed'}), 405
 
+@app.route('/report')
+@login_required
+def report():
+    total_value = db.session.query(db.func.sum(GameCoin.value * GameCoin.quantity)).filter_by(user_id=current_user.id).scalar() or 0
+    total_coins = GameCoin.query.filter_by(user_id=current_user.id).count()
+    coins_by_type = db.session.query(GameCoin.type, db.func.sum(GameCoin.quantity)).filter_by(user_id=current_user.id).group_by(GameCoin.type).all()
+    return render_template('report.html', total_value=total_value, total_coins=total_coins, coins_by_type=coins_by_type)
+
 @app.route('/logout')
 @login_required
 def logout():
