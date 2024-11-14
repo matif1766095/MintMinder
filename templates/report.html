@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report - MintMinder</title>
+   <link rel="stylesheet" href="/static/report/style.css">
+</head>
+<body>
+    <header>
+        MintMinder
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Options</h2>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('manage_coins') }}">Manage Coins</a>
+            <a href="{{ url_for('report') }}">View Report</a>
+            <a href="{{ url_for('logout') }}" onclick="confirmLogout(event)">Logout</a>
+        </div>
+        <div class="main-content">
+            <h1>Report</h1>
+            <p>Total Coins: {{ total_coins }}</p>
+            <p>Total Value: {{ total_value }}</p>
+            <h2>Coins by Type</h2>
+            <ul>
+                {% for coin_type, quantity in coins_by_type %}
+                <li>{{ coin_type }}: {{ quantity }}</li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('profile') }}">Back to Profile</a>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 MintMinder by Muhammad Atif. All rights reserved.
+    </footer>
+    <script src="/static/logout.js"></script>
+</body>
+</html>
