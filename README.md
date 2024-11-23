@@ -89,20 +89,21 @@ To get started with the MintMinder, follow these steps:
 6. **Reports:** Access the `/report` route to view insights about your coins.
 
 ## 📜 Routes
-| Route                  | Method | Description                                        |
-|------------------------|--------|----------------------------------------------------|
-| `/`                    | GET    | Home page                                         |
-| `/register`            | GET, POST | User registration page                         |
-| `/login`               | GET, POST | User login page                                 |
-| `/logout`              | GET    | Log out the user                                 |
-| `/profile`             | GET    | User profile page                                |
-| `/coins`               | GET, POST | Manage game coins (view/add)                  |
-| `/coins/<int:coin_id>` | PUT, DELETE | Modify a specific coin                        |
-| `/export`              | GET    | Export coins as CSV                              |
-| `/import`              | POST   | Import coins from CSV                            |
-| `/transactions`        | GET    | View transaction history                          |
-| `/report`              | GET    | View report on game coins                        |
-
+-------------------------------------------------------------------------------------------
+| Route                  | Method      | Description                                      |
+|------------------------|-------------|--------------------------------------------------|
+| `/`                    | GET         | Home page                                        |
+| `/register`            | GET, POST   | User registration page                           |
+| `/login`               | GET, POST   | User login page                                  |
+| `/logout`              | GET         | Log out the user                                 |
+| `/profile`             | GET         | User profile page                                |
+| `/coins`               | GET, POST   | Manage game coins (view/add)                     |
+| `/coins/<int:coin_id>` | PUT, DELETE | Modify a specific coin                           |
+| `/export`              | GET         | Export coins as CSV                              |
+| `/import`              | POST        | Import coins from CSV                            |
+| `/transactions`        | GET         | View transaction history                         |
+| `/report`              | GET         | View report on game coins                        |
+-------------------------------------------------------------------------------------------
 ## 📊 Models
 ### User
 - `id`: Integer, Primary Key
