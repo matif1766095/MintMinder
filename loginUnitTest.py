@@ -1,6 +1,7 @@
 import unittest
 from app import app, db 
 
+# this test will automatically test the login functionality
 class FlaskAppTests(unittest.TestCase):
     def setUp(self):
         self.app = app 
